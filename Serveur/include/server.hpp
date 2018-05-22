@@ -14,6 +14,7 @@ class Server {
 	sf::UdpSocket _listener;
 	sf::Packet _packet;
 	void listen();
+	void send_packet_to_users(sf::Packet);
 	void add_address(sf::IpAddress, unsigned short port);
 
 	public:
@@ -21,7 +22,6 @@ class Server {
 	Server();
 	~Server();
 	void run();
-
 };
 
 #endif //ROGUE_LIKE_SERVER_HPP

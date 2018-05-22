@@ -24,10 +24,7 @@ void Server::listen()
 		sf::Packet packet;
 		if (_listener.receive(packet, new_address, port) == sf::Socket::Done) {
 			this->add_address(new_address, port);
-			packet >> type;
-			packet >> data;
-			packet >> player_id;
-			std::cout << type << ' ' << data << ' ' << player_id << std::endl;
+			this->send_packet_to_users(packet);
 		}
 	}
 }
@@ -46,8 +43,6 @@ void Server::add_address(sf::IpAddress address, unsigned short port)
 	int i = 0;
 
 	for (auto it = _vector.begin(); it != _vector.end(); it++) {
-		std::cout << i << std::endl;
-		i++;
 		ip_string = it.base()->first.toString();
 		if (ip_string == address.toString())
 			return;
@@ -55,6 +50,15 @@ void Server::add_address(sf::IpAddress address, unsigned short port)
 	pair.first = address;
 	pair.second = port;
 	_vector.push_back(pair);
+}
+
+void Server::send_packet_to_users(sf::Packet packet)
+{
+	sf::UdpSocket socket;
+
+	for (auto it = _vector.begin(); it != _vector.end(); it++) {
+		socket.send(packet, it.base()->first, it.base()->second);
+	}
 }
 
 Server::~Server() = default;
