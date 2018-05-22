@@ -9,12 +9,17 @@
 
 class Client {
 	private:
-	sf::IpAddress server;
-	sf::UdpSocket socket;
+	sf::IpAddress _server;
+	sf::UdpSocket _socket;
+	unsigned int _port;
 
 	public:
-	Client(void);
+	Client(std::string server_ip_address, unsigned int port);
 	~Client();
+	std::string getServerIpToString(void);
+	sf::IpAddress getServerIp(void);
+	unsigned int getPort(void);
+	void send_data(void *data, unsigned int data_length);
 };
 
 #endif //ROGUE_LIKE_CLIENT_HPP

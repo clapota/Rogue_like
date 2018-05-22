@@ -3,17 +3,11 @@
 //
 
 #include <iostream>
-#include <SFML/Graphics.hpp>
-#include <SFML/Window.hpp>
+#include "client.hpp"
 
 int main()
 {
-	sf::Vector3f bite(1, 2, 3);
-	sf::RenderWindow *window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Rlike", sf::Style::Default, sf::ContextSettings());
-
-	std::cout << "Hello World !" << bite.x << bite.y << bite.z << std::endl;
-	while (window->isOpen()) {
-		std::cout << "toto" << std::endl;
-	}
+	Client client("127.0.0.1", 25500);
+	client.send_data(client.getActual_packet())
 	return (0);
 }
