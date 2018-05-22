@@ -12,6 +12,8 @@ class Client {
 	sf::IpAddress _server;
 	sf::UdpSocket _socket;
 	unsigned int _port;
+	sf::Packet _packet;
+	void set_packet(short int type, std::string data, short int player_id);
 
 	public:
 	Client(std::string server_ip_address, unsigned int port);
@@ -19,7 +21,7 @@ class Client {
 	std::string getServerIpToString(void);
 	sf::IpAddress getServerIp(void);
 	unsigned int getPort(void);
-	void send_data(void *data, unsigned int data_length);
+	bool send_data(short int type, std::string data, short int player_id);
 };
 
 #endif //ROGUE_LIKE_CLIENT_HPP

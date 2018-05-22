@@ -8,6 +8,6 @@
 int main()
 {
 	Client client("127.0.0.1", 25500);
-	client.send_data(client.getActual_packet())
+	client.send_data(1, "zizibite", 0);
 	return (0);
 }
