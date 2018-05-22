@@ -4,15 +4,17 @@
 
 #include "Game.hpp"
 
-Game::~Game()
-{
-	delete(_window);
-}
-
 Game::Game()
 {
-	_window = new sf::RenderWindow(sf::VideoMode(1920, 1080), "Rogue Like",
-		sf::Style::Default, sf::ContextSettings());
+	_window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(),
+		"Rogue Like", sf::Style::Default, sf::ContextSettings());
+	if (_window == nullptr)
+		std::exit(1);
+}
+
+Game::~Game()
+{
+	delete (_window);
 }
 
 int Game::run()
@@ -24,7 +26,7 @@ int Game::run()
 			handle_event(_event);
 		update();
 		draw();
-		this->_dt = dtClock.restart().asSeconds();
+		_dt = dtClock.restart().asSeconds();
 	}
 	return (0);
 }
@@ -43,4 +45,9 @@ void Game::handle_event(sf::Event &event)
 {
 	if (event.type == sf::Event::Closed)
 		_window->close();
+}
+
+float Game::getDt()
+{
+	return (this->_dt);
 }

@@ -22,6 +22,7 @@ class Game {
 	void update();
 	void draw();
 	void handle_event(sf::Event &event);
+	float getDt();
 };
 
 #endif //ROGUE_LIKE_GAME_HPP
