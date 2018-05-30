@@ -16,6 +16,7 @@ class Client {
 	void set_packet(short int type, std::string data, short int player_id);
 
 	public:
+	void flouflou(std::string);
 	Client(std::string server_ip_address, unsigned int port);
 	~Client();
 	std::string getServerIpToString(void);

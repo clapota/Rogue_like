@@ -46,3 +46,8 @@ void Client::set_packet(short int type, std::string data, short int player_id)
 {
 	_packet << type << data << player_id;
 }
+
+void Client::flouflou(std::string)
+{
+
+}
