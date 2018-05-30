@@ -2,14 +2,13 @@
 // Created by antoine_dh on 5/22/18.
 //
 
+#include <iostream>
 #include "Game.hpp"
 
 Game::Game()
 {
 	_window = new sf::RenderWindow(sf::VideoMode::getDesktopMode(),
 		"Rogue Like", sf::Style::Default, sf::ContextSettings());
-	if (_window == nullptr)
-		std::exit(1);
 }
 
 Game::~Game()

@@ -4,10 +4,6 @@
 
 #include "Player.hpp"
 
-Player::Player()
-{
-}
+Player::Player() = default;
 
-Player::~Player()
-{
-}
+Player::~Player() = default;

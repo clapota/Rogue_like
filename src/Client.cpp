@@ -2,8 +2,21 @@
 // Created by abel on 5/22/18.
 //
 
-#include "../include/client.hpp"
+#include "Client.hpp"
 #include <iostream>
+
+Client::Client() = default;
+
+Client::Client(std::string &ipAddress, unsigned short port)
+	: _port(port), _server(ipAddress)
+{
+	_socket.setBlocking(false);
+}
+
+Client::~Client()
+{
+	_socket.unbind();
+}
 
 sf::IpAddress Client::getServerIp()
 {
@@ -15,17 +28,7 @@ std::string Client::getServerIpToString()
 	return this->_server.toString();
 }
 
-Client::Client(std::string Ip_Address, unsigned int port)
-	: _port(port), _server(Ip_Address)
-{
-	_socket.setBlocking(false);
-}
-
-Client::~Client()
-{
-}
-
-unsigned int Client::getPort()
+unsigned short Client::getPort()
 {
 	return this->_port;
 }
